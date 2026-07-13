@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Historia del celu — La evolución de la conexión</title>
+  <meta name="description" content="Veinte años de smartphones contados al revés: cada avance celebrado, cada trampa revelada en la letra chica.">
+
+  <!-- Open Graph (para cuando se comparta en LinkedIn / WhatsApp) -->
+  <meta property="og:title" content="Historia del celu">
+  <meta property="og:description" content="El teléfono casi no cambió en veinte años. Vos sí.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- PORTADA -->
+  <header class="cover">
+    <div class="cover__eyebrow">La evolución de la conexión · 2007 – 2026</div>
+    <h1 class="cover__thesis">El teléfono casi no cambió en veinte años. Vos sí.</h1>
+    <p class="cover__sub">
+      Veinte afiches de falsa celebración corporativa. Cada uno festeja un avance;
+      la letra chica cuenta lo que se llevó. Tocá para revelarla. Girá para entenderla.
+    </p>
+    <button class="cover__enter" id="enter" type="button">
+      Entrar al recorrido <span class="arrow">↓</span>
+    </button>
+    <div class="cover__scrollhint">2007 · el comienzo</div>
+  </header>
+
+  <!-- RIEL DE AFICHES (lo llena app.js) -->
+  <main class="stream" id="stream" aria-label="Los 21 afiches, en orden cronológico"></main>
+
+  <footer class="foot">
+    <p>Nexus Phone es una marca ficticia. Campaña crítica y pedagógica sobre la historia del smartphone.</p>
+    <p>Marco transversal: McLuhan · Stiegler · Platón (Fedro).</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
