@@ -5,7 +5,7 @@
 
    Cada afiche:
      year      -> también es el nombre de la imagen: img/2007.jpg, etc.
-     era       -> define la estética (ver ERAS abajo)
+     era       -> solo define el color de fondo del afiche tipográfico (1–8)
      model     -> firma de la esquina ("Nexus Phone 1 · 2007")
      headline  -> titular grande (voz corporativa de la época)
      body      -> bajada
@@ -24,17 +24,22 @@ const THESIS_SUB =
   "Veinte modelos. La misma caja de vidrio y metal. Lo que evolucionó fue " +
   "todo lo que corre a través de ella — y todo lo que se llevó.";
 
-/* Estética por era. El sitio envejece a medida que scrolleás. */
-const ERAS = {
-  1: { name: "Glossy negro",        range: "2007–2009" },
-  2: { name: "Blanco clínico",      range: "2010–2012" },
-  3: { name: "Flat pastel",         range: "2013–2015" },
-  4: { name: "Grafito mate",        range: "2016–2018" },
-  5: { name: "Crepúsculo de datos", range: "2019–2021" },
-  6: { name: "Wellness / titanio",  range: "2022–2024" },
-  7: { name: "Esterilidad terminal",range: "2025–2026" },
-  8: { name: "Hoy",                 range: "síntesis"   }
-};
+/* Capítulos narrativos: la estructura del recorrido.
+   Cada uno agrupa ~4 años bajo una tesis (prometer → conocer → cercar →
+   capturar → encerrar). El campo `era` de cada afiche (más abajo) solo
+   define el color de fondo del afiche tipográfico; no la estructura. */
+const CHAPTERS = [
+  { n: "I", name: "La promesa", from: 2007, to: 2010,
+    blurb: "El teléfono llega prometiéndote el mundo en el bolsillo. La trampa ya está sembrada, pero todavía se siente como un regalo." },
+  { n: "II", name: "Te conocen", from: 2011, to: 2014,
+    blurb: "El aparato empieza a saber quién sos: qué decís, dónde estás, tu cuerpo, tu plata. El período del reconocimiento." },
+  { n: "III", name: "El cerco", from: 2015, to: 2018,
+    blurb: "Deciden qué ves, sellan el objeto contra vos, te identifican la cara y te venden una cura falsa. El lazo se ajusta." },
+  { n: "IV", name: "La captura total", from: 2019, to: 2022,
+    blurb: "Tus recuerdos, tu casa, tus movimientos y tu cuerpo: todo adentro del sistema. Ya no hay afuera." },
+  { n: "V", name: "La jaula", from: 2023, to: 2026,
+    blurb: "La realidad compartida colapsa, alquilás lo que antes tenías — y el último modelo es igual al primero, porque ya no te podés ir." }
+];
 
 const POSTERS = [
   {

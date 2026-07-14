@@ -83,17 +83,28 @@ body{
   padding:clamp(40px,10vw,90px) clamp(16px,5vw,24px) 30vh;
 }
 
-/* Separador de era */
-.era-sep{
-  margin:clamp(48px,12vw,96px) 0 clamp(20px,6vw,34px);
-  display:flex;align-items:baseline;gap:.9rem;
+/* Separador de capítulo */
+.chapter-sep{
+  margin:clamp(56px,13vw,104px) 0 clamp(22px,6vw,36px);
   color:var(--muted);
 }
-.era-sep:first-child{margin-top:0}
-.era-sep__num{font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--ink);opacity:.7}
-.era-sep__name{font-size:.82rem;letter-spacing:.2em;text-transform:uppercase}
-.era-sep__range{margin-left:auto;font-size:.78rem;letter-spacing:.1em;font-variant-numeric:tabular-nums}
-.era-sep__line{flex:1;height:1px;background:var(--line)}
+.chapter-sep:first-child{margin-top:0}
+.chapter-sep__head{display:flex;align-items:baseline;gap:.9rem}
+.chapter-sep__num{
+  font-family:var(--serif);font-size:1.4rem;font-style:italic;
+  color:var(--ink);opacity:.7;font-variant-numeric:normal;
+}
+.chapter-sep__name{
+  font-family:var(--serif);font-size:clamp(1.15rem,4.6vw,1.5rem);
+  color:var(--ink);letter-spacing:0;
+}
+.chapter-sep__range{margin-left:auto;font-size:.78rem;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.chapter-sep__line{flex:1;height:1px;background:var(--line)}
+.chapter-sep__blurb{
+  margin-top:.7rem;max-width:52ch;
+  font-size:clamp(.85rem,3.4vw,.94rem);line-height:1.5;
+  color:var(--muted);text-wrap:pretty;
+}
 
 /* ---------- TARJETA / AFICHE ---------- */
 .card{

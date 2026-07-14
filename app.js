@@ -1,6 +1,6 @@
 /* ============================================================
    Historia del celu — lógica del micrositio
-   Depende de data.js (POSTERS, ERAS, THESIS...)
+   Depende de data.js (POSTERS, CHAPTERS, THESIS...)
    Sin librerías. Funciona como sitio estático (GitHub Pages).
    ============================================================ */
 
@@ -13,33 +13,51 @@
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])
     );
 
-  /* ---- construcción del riel: separadores de era + tarjetas ---- */
-  let lastEra = null;
-  let eraCount = 0;
+  /* ---- construcción del riel: separadores de capítulo + tarjetas ---- */
+  const chapterFor = (year) =>
+    CHAPTERS.find((c) => year >= c.from && year <= c.to) || null;
+
+  let lastChapter = null;
 
   POSTERS.forEach((p) => {
-    if (p.era !== lastEra && ERAS[p.era]) {
-      if (p.era !== 8) {                 // la síntesis no lleva separador
-        eraCount += 1;
-        stream.insertAdjacentHTML("beforeend", eraSeparator(p.era, eraCount));
+    if (!p.synthesis) {
+      const ch = chapterFor(parseInt(p.year, 10));
+      if (ch && ch !== lastChapter) {
+        stream.insertAdjacentHTML("beforeend", chapterSeparator(ch));
+        lastChapter = ch;
       }
-      lastEra = p.era;
     }
     stream.insertAdjacentHTML("beforeend", p.synthesis ? synthesisCard(p) : posterCard(p));
   });
 
-  function eraSeparator(eraKey, n) {
-    const e = ERAS[eraKey];
+  /* Detección robusta de imágenes: si img/AÑO.jpg existe, mostramos la
+     imagen limpia (clase has-img); si no, queda el afiche tipográfico.
+     El chequeo de .complete cubre las imágenes YA cacheadas, cuyo evento
+     load no vuelve a dispararse. */
+  document.querySelectorAll(".front__img").forEach((img) => {
+    const front = img.closest(".front");
+    const show = () => front.classList.add("has-img");
+    const hide = () => img.remove();
+    if (img.complete) {
+      (img.naturalWidth > 0 ? show : hide)();
+    } else {
+      img.addEventListener("load", show);
+      img.addEventListener("error", hide);
+    }
+  });
+
+  function chapterSeparator(c) {
+    const range = c.from + "\u2013" + c.to;
     return `
-      <div class="era-sep">
-        <span class="era-sep__num">${romTag(n)}</span>
-        <span class="era-sep__name">${esc(e.name)}</span>
-        <span class="era-sep__line"></span>
-        <span class="era-sep__range">${esc(e.range)}</span>
+      <div class="chapter-sep">
+        <div class="chapter-sep__head">
+          <span class="chapter-sep__num">${esc(c.n)}</span>
+          <span class="chapter-sep__name">${esc(c.name)}</span>
+          <span class="chapter-sep__line"></span>
+          <span class="chapter-sep__range">${range}</span>
+        </div>
+        <p class="chapter-sep__blurb">${esc(c.blurb)}</p>
       </div>`;
-  }
-  function romTag(n) {
-    return ["", "I", "II", "III", "IV", "V", "VI", "VII"][n] || String(n);
   }
 
   /* ---- una tarjeta-afiche (frente + reverso) ---- */
@@ -59,9 +77,7 @@
 
         <div class="face front" role="button" tabindex="0"
              aria-label="Afiche ${esc(p.year)}. Tocá para girar.">
-          <img class="front__img" alt="Afiche ${esc(p.year)}" src="img/${esc(p.year)}.jpg"
-               onerror="this.remove()"
-               onload="this.closest('.front').classList.add('has-img')">
+          <img class="front__img" alt="Afiche ${esc(p.year)}" src="img/${esc(p.year)}.jpg">
           ${draft}
           <span class="front__flip" aria-hidden="true">↻</span>
           <div class="front__year">${esc(p.year)}</div>
