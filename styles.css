@@ -234,20 +234,44 @@ body{
   color:var(--muted);
 }
 
-/* si hay imagen, tapa el frente tipográfico */
+/* ---------- FRENTE CON IMAGEN ----------
+   El afiche ya trae TODO el texto horneado (titular, bajada, letra chica,
+   firma). Entonces mostramos la imagen limpia y no dibujamos nada encima.
+   Los gestos siguen: zona invisible abajo = crecer la letra chica;
+   resto = girar. */
 .front__img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;border-radius:var(--radius);
+  object-fit:cover;border-radius:var(--radius);z-index:1;
 }
+.front.has-img{padding:0;background:#000}
+.front.has-img .front__year,
 .front.has-img .front__headline,
 .front.has-img .front__body,
-.front.has-img .front__year,
-.front.has-img .front__tagline{visibility:hidden}
-.front.has-img .finestrip,
-.front.has-img .front__flip{position:absolute;z-index:2}
-.front.has-img .finestrip{left:clamp(16px,4.5vw,22px);right:clamp(16px,4.5vw,22px);bottom:clamp(16px,4.5vw,22px);margin:0;
-  background:linear-gradient(to top,rgba(0,0,0,.7),transparent);padding:2rem .8rem .6rem;border:0}
-.front.has-img .finestrip__label,.front.has-img .finestrip__peek{color:#fff;opacity:.85}
+.front.has-img .front__tagline{display:none}
+.front.has-img .badge-draft{display:none}      /* si hay arte final, no marcamos borrador */
+
+/* botón girar: chip discreto sobre la imagen */
+.front.has-img .front__flip{
+  z-index:3;background:rgba(0,0,0,.45);color:#fff;opacity:.8;
+  backdrop-filter:blur(4px);
+}
+
+/* zona de toque invisible sobre la letra chica horneada (franja inferior) */
+.front.has-img .finestrip{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  height:24%;margin:0;padding:0;border:0;background:none;
+}
+.front.has-img .finestrip__peek{display:none}
+/* pista mínima y siempre visible (funciona en celular): chip abajo a la izquierda */
+.front.has-img .finestrip__label{
+  position:absolute;left:12px;bottom:12px;
+  color:#fff;opacity:.72;
+  background:rgba(0,0,0,.5);padding:.4em .8em;border-radius:999px;
+  backdrop-filter:blur(4px);white-space:nowrap;
+  transition:opacity .3s var(--ease);
+}
+.front.has-img .finestrip:hover .finestrip__label,
+.front.has-img .finestrip:active .finestrip__label{opacity:1}
 
 /* ---------- AFICHE 21 — SÍNTESIS (rompe el formato) ---------- */
 .card--synthesis .card__inner{aspect-ratio:auto;box-shadow:none}
