@@ -11,11 +11,27 @@
      body      -> bajada
      tagline   -> remate en itálica
      fine      -> LA LETRA CHICA: crece al tocarla (la revelación)
-     concepts  -> conceptos del reverso
+     concepts  -> conceptos del reverso (formato compacto)
      theorist  -> teórico/s del reverso ("" o "—" si va limpio)
-     pedagogy  -> capa pedagógica del reverso
+     pedagogy  -> capa pedagógica del reverso (formato compacto)
+     reverso   -> (opcional) texto divulgativo largo del dorso. Si está,
+                  REEMPLAZA al formato compacto (concepts/theorist/pedagogy)
+                  en esa tarjeta. Estructura:
+                     reverso: {
+                       subtitle: "Título corto del tema",
+                       paras: [
+                         "Primer párrafo…",
+                         "Segundo párrafo…"        // podés poner 1, 2 o más
+                       ],
+                       pensar: "Preguntas para pensar, al pie del dorso."
+                     }
+                  (ver 2007–2009 más abajo como ejemplo completo)
      crossref  -> (opcional) botón de cruce en el reverso {to, label}
      draft     -> (opcional) true = copy provisorio, revisar
+
+   PARA COMPLETAR LOS 17 AÑOS QUE FALTAN: pegá el bloque `reverso` de arriba
+   dentro del afiche del año, después de `pedagogy`, y completá los textos.
+   No hay que tocar app.js ni styles.css: el dorso lo toma solo.
    ============================================================ */
 
 const THESIS = "El teléfono casi no cambió en veinte años. Vos sí.";
@@ -50,7 +66,15 @@ const POSTERS = [
     fine: "El modelo original todavía es modesto: sin tienda de apps, sin conectividad total. Pero la promesa de fusión es la trampa: un objeto que reúne funciones dispersas terminará absorbiendo cada rincón de tu vida. Lo que viene: difuminado trabajo–vida, FOMO, la sensación de no estar nunca del todo presente.",
     concepts: "convergencia de medios · semilla del always-on",
     theorist: "McLuhan",
-    pedagogy: "Potencia el acceso ubicuo y la multitarea; atrofia la tolerancia a no saber y la orientación sin pantalla."
+    pedagogy: "Potencia el acceso ubicuo y la multitarea; atrofia la tolerancia a no saber y la orientación sin pantalla.",
+    reverso: {
+      subtitle: "Convergencia",
+      paras: [
+        "En 2007 pasó algo simple pero enorme: tres aparatos que llevabas por separado —el reproductor de música, el teléfono y la computadora con internet— se fundieron en un solo objeto. A eso se le llama convergencia: cuando muchas funciones distintas se concentran en un mismo dispositivo. Parece pura comodidad, y lo es. Pero también significa que un único objeto empieza a acompañarte a todos lados, todo el tiempo.",
+        "Marshall McLuhan, un pensador canadiense que estudió los medios de comunicación, tenía una idea justa para esto: toda tecnología que extiende una capacidad humana, al mismo tiempo amputa otra. El auto extiende tus piernas y atrofia el caminar. ¿Qué extendió el celular? El acceso a todo, siempre. ¿Y qué empezó a amputar? Quizás la experiencia de estar en un solo lugar, haciendo una sola cosa."
+      ],
+      pensar: "¿Qué cosas dejaste de hacer «por separado» desde que todo está en el teléfono? ¿Recordás la última vez que no supiste algo y te quedaste con la duda?"
+    }
   },
   {
     year: "2008", era: 1, model: "Nexus Phone 2 · 2008",
@@ -60,7 +84,15 @@ const POSTERS = [
     fine: "Cumplimos: en seis meses eran 10.000; en una década, millones. El 68% de las apps recopila tus datos sin que lo sepas. Las gratis nunca son gratis: vos sos el producto. Empieza el lock-in; salir será cada vez más caro.",
     concepts: "capitalismo de vigilancia · vendor lock-in · economía de plataformas",
     theorist: "Zuboff",
-    pedagogy: "Habilita el just-in-time learning; atrofia la profundidad: se aprende a usar soluciones empaquetadas, no a razonarlas."
+    pedagogy: "Habilita el just-in-time learning; atrofia la profundidad: se aprende a usar soluciones empaquetadas, no a razonarlas.",
+    reverso: {
+      subtitle: "La tienda de apps",
+      paras: [
+        "La tienda de aplicaciones cambió la naturaleza del teléfono: dejó de ser un aparato con funciones fijas y se volvió un contenedor infinito. Cualquier necesidad tuya podía convertirse en una app. Y acá aparece la trampa que casi nadie vio en 2008: muchas de esas apps eran gratis. ¿Cómo puede ser gratis algo que costó millones desarrollar? Porque el pago sos vos: tus datos, tus gustos, tus horarios, tus contactos.",
+        "Shoshana Zuboff, profesora de Harvard, le puso nombre a un modelo que para 2008 ya llevaba años en marcha: el capitalismo de vigilancia. La materia prima de esta industria no es el petróleo ni el acero: es tu comportamiento, registrado y vendido para predecir (e influir) lo que vas a hacer después. A eso se le suma el segundo cierre de la trampa, el lock-in o encierro: cuanto más comprás, guardás y configurás en un ecosistema, más caro —en plata y en esfuerzo— se vuelve irte. Entre lo que saben de vos y lo que ya dejaste acá adentro, la puerta de salida se cierra sola."
+      ],
+      pensar: "¿Cuántas apps gratis usás? ¿Qué creés que dan a cambio? Si mañana quisieras cambiar de marca de teléfono, ¿qué perderías?"
+    }
   },
   {
     year: "2009", era: 1, model: "Nexus Phone 3 · 2009",
@@ -69,8 +101,16 @@ const POSTERS = [
     tagline: "Interrumpimos tu vida para mejorarte.",
     fine: "Las notificaciones se optimizan mediante diseño persuasivo para interrumpir tu concentración cada 3–5 minutos. Los puntos rojos, sonidos y vibraciones explotan las mismas vías neurológicas que las máquinas tragamonedas. El usuario promedio revisa el teléfono 96 veces al día.",
     concepts: "economía de la atención · dark patterns · adicción conductual diseñada",
-    theorist: "Harris · Schüll · Fogg",
-    pedagogy: "Atrofia la atención sostenida y la lectura larga (Carr: del deep reading al skimming). Es el golpe central a la educación."
+    theorist: "Schüll · Fogg · Harris",
+    pedagogy: "Atrofia la atención sostenida y la lectura larga (del deep reading al skimming). Es el golpe central a la educación.",
+    reverso: {
+      subtitle: "Las notificaciones",
+      paras: [
+        "El punto rojo con un numerito parece un detalle de diseño. No lo es: es probablemente la pieza de ingeniería psicológica más eficaz de la década. Las notificaciones funcionan con recompensa variable: nunca sabés si lo que llegó es importante o basura, y esa incertidumbre es exactamente lo que te hace mirar. Es el mismo mecanismo de las máquinas tragamonedas, y no por casualidad.",
+        "Natasha Dow Schüll, antropóloga, pasó años estudiando los casinos de Las Vegas y mostró cómo las tragamonedas se diseñan para inducir un estado de trance donde el tiempo desaparece. B.J. Fogg fundó en Stanford un laboratorio de «tecnología persuasiva» donde se formaron muchos diseñadores de estas interfaces. Y Tristan Harris, que trabajó en Google, se convirtió en arrepentido y denunciante: habla de la economía de la atención, donde tu atención es el recurso escaso que las empresas se disputan."
+      ],
+      pensar: "¿Cuántas veces al día mirás el teléfono sin que haya sonado? ¿Quién decidió que ese punto sea rojo y no gris? ¿Podés leer una página entera sin interrupciones?"
+    }
   },
   {
     year: "2010", era: 2, model: "Nexus Phone 4 · 2010",
