@@ -124,7 +124,7 @@
     <article class="card card--synthesis" id="a21" data-era="8" data-year="21">
       <div class="card__inner">
         <div class="face synthesis">
-          <div class="synthesis__kicker">Afiche 21 · Hoy</div>
+          <div class="synthesis__kicker">Epílogo · Hoy</div>
           <h2 class="synthesis__thesis">${esc(p.headline)}</h2>
           <p class="synthesis__sub">${esc(p.body)}</p>
           <p class="synthesis__theory">${p.pedagogy
