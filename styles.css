@@ -156,7 +156,7 @@ body{
   font-family:var(--serif);font-style:italic;
   font-size:clamp(1rem,4.4vw,1.2rem);opacity:.9;
 }
-/* la tira de letra chica: zona de toque generosa */
+/* la tira de letra chica: zona de toque generosa (frente tipográfico) */
 .finestrip{
   margin-top:1rem;padding-top:.7rem;
   border-top:1px dashed var(--fg-faint,rgba(0,0,0,.2));
@@ -222,12 +222,40 @@ body{
   color:var(--ink);
   padding:clamp(24px,6.5vw,34px);
   gap:.2rem;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
 }
 .back__year{font-family:var(--serif);font-style:italic;opacity:.5;font-size:.9rem}
 .back__block{margin-top:1.15rem}
 .back__label{
   font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
   margin-bottom:.35rem;
+}
+
+/* --- REVERSO LARGO (texto divulgativo) --- */
+.back__subtitle{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.15rem,4.8vw,1.45rem);line-height:1.15;
+  color:var(--ink);margin-top:.5rem;
+}
+.back__para{
+  margin-top:.9rem;
+  font-size:clamp(.86rem,3.5vw,.95rem);line-height:1.55;
+  color:#dcdce0;text-wrap:pretty;
+}
+.back__pensar{
+  margin-top:1.3rem;padding:.95rem 1.05rem;
+  background:rgba(201,173,99,.09);
+  border-left:2px solid var(--draft);border-radius:0 8px 8px 0;
+}
+.back__pensar-label{
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--draft);margin-bottom:.4rem;
+}
+.back__pensar p{
+  font-family:var(--serif);
+  font-size:clamp(.9rem,3.7vw,1rem);line-height:1.5;color:#f0eee8;
+  text-wrap:pretty;
 }
 .back__concepts{font-size:clamp(.95rem,4vw,1.08rem);line-height:1.4}
 .back__theorist{font-family:var(--serif);font-style:italic;font-size:1.05rem}
@@ -246,10 +274,10 @@ body{
 }
 
 /* ---------- FRENTE CON IMAGEN ----------
-   El afiche ya trae TODO el texto horneado (titular, bajada, letra chica,
-   firma). Entonces mostramos la imagen limpia y no dibujamos nada encima.
-   Los gestos siguen: zona invisible abajo = crecer la letra chica;
-   resto = girar. */
+   El afiche NO trae la letra chica horneada: solo producto, titular,
+   bajada, remate y firma. La letra chica la muestra el sitio.
+   Mostramos la imagen limpia; abajo hay una zona de toque invisible que
+   hace crecer la letra chica, y tocar el resto gira al reverso. */
 .front__img{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;border-radius:var(--radius);z-index:1;
@@ -267,13 +295,13 @@ body{
   backdrop-filter:blur(4px);
 }
 
-/* zona de toque invisible sobre la letra chica horneada (franja inferior) */
+/* zona de toque invisible en la franja inferior (donde el sitio revela la letra chica) */
 .front.has-img .finestrip{
   position:absolute;left:0;right:0;bottom:0;z-index:2;
-  height:24%;margin:0;padding:0;border:0;background:none;
+  height:22%;margin:0;padding:0;border:0;background:none;
 }
 .front.has-img .finestrip__peek{display:none}
-/* pista mínima y siempre visible (funciona en celular): chip abajo a la izquierda */
+/* chip chico y siempre visible (funciona en celular): abajo a la izquierda */
 .front.has-img .finestrip__label{
   position:absolute;left:12px;bottom:12px;
   color:#fff;opacity:.72;

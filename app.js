@@ -71,12 +71,31 @@
       : "";
     const draft = p.draft ? `<span class="badge-draft">borrador</span>` : "";
 
+    const backContent = p.reverso
+      ? `
+          <div class="back__subtitle">${esc(p.reverso.subtitle)}</div>
+          ${p.reverso.paras.map((t) => `<p class="back__para">${esc(t)}</p>`).join("")}
+          <div class="back__pensar">
+            <div class="back__pensar-label">Para pensar</div>
+            <p>${esc(p.reverso.pensar)}</p>
+          </div>`
+      : `
+          <div class="back__block">
+            <div class="back__label">Conceptos</div>
+            <div class="back__concepts">${esc(p.concepts)}</div>
+          </div>
+          ${theorist}
+          <div class="back__block">
+            <div class="back__label">Capa pedagógica</div>
+            <div class="back__pedagogy">${esc(p.pedagogy)}</div>
+          </div>`;
+
     return `
     <article class="card" id="a${esc(p.year)}" data-era="${p.era}" data-year="${esc(p.year)}">
       <div class="card__inner">
 
         <div class="face front" role="button" tabindex="0"
-             aria-label="Afiche ${esc(p.year)}. Tocá para girar.">
+             aria-label="Afiche ${esc(p.year)}. Tocá la letra chica para leerla, o el afiche para girar.">
           <img class="front__img" alt="Afiche ${esc(p.year)}" src="img/${esc(p.year)}.jpg">
           ${draft}
           <span class="front__flip" aria-hidden="true">↻</span>
@@ -101,15 +120,7 @@
         <div class="face back" role="button" tabindex="0"
              aria-label="Reverso ${esc(p.year)}. Tocá para volver.">
           <div class="back__year">${esc(p.year)}</div>
-          <div class="back__block">
-            <div class="back__label">Conceptos</div>
-            <div class="back__concepts">${esc(p.concepts)}</div>
-          </div>
-          ${theorist}
-          <div class="back__block">
-            <div class="back__label">Capa pedagógica</div>
-            <div class="back__pedagogy">${esc(p.pedagogy)}</div>
-          </div>
+          ${backContent}
           ${cross}
           <div class="back__return">↻ tocá para volver al afiche</div>
         </div>
@@ -124,7 +135,7 @@
     <article class="card card--synthesis" id="a21" data-era="8" data-year="21">
       <div class="card__inner">
         <div class="face synthesis">
-          <div class="synthesis__kicker">Epílogo · Hoy</div>
+          <div class="synthesis__kicker">Afiche 21 · Hoy</div>
           <h2 class="synthesis__thesis">${esc(p.headline)}</h2>
           <p class="synthesis__sub">${esc(p.body)}</p>
           <p class="synthesis__theory">${p.pedagogy
@@ -143,8 +154,8 @@
 
   /* ============================================================
      INTERACCIÓN (delegada: un solo listener para todo el riel)
-     - tocar la letra chica  -> crece la revelación
-     - tocar el resto        -> gira la tarjeta
+     - tocar la letra chica  -> crece la revelación sobre el afiche
+     - tocar el resto        -> gira la tarjeta al reverso (análisis)
      - tocar el reverso      -> vuelve
      - botones de cruce      -> navegan a otro año
      ============================================================ */
@@ -159,7 +170,6 @@
   }
 
   function handleActivate(target) {
-    // cruces y navegación
     const goto = target.closest("[data-goto]");
     if (goto) { navigateTo(goto.getAttribute("data-goto")); return; }
     if (target.closest("[data-top]")) {
@@ -171,7 +181,7 @@
       const rev = target.closest(".reveal");
       rev.classList.remove("open"); rev.setAttribute("aria-hidden", "true"); return;
     }
-    // abrir la revelación (letra chica)
+    // abrir/crecer la letra chica
     const strip = target.closest(".finestrip");
     if (strip) {
       const rev = strip.parentElement.querySelector(".reveal");
@@ -181,7 +191,7 @@
       rev.setAttribute("aria-hidden", willOpen ? "false" : "true");
       return;
     }
-    // clic dentro de la revelación abierta: no hacer nada (dejar leer)
+    // clic dentro de la revelación abierta: dejar leer
     if (target.closest(".reveal.open")) return;
 
     // girar (frente o reverso)
