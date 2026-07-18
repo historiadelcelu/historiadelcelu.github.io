@@ -87,6 +87,21 @@
       : "";
     const draft = p.draft ? `<span class="badge-draft">borrador</span>` : "";
 
+    // "Para saber más": pie discreto + panel inline. Solo si el afiche tiene fuentes.
+    const sources = (p.sources && p.sources.length)
+      ? `
+          <div class="back__more">
+            <button class="back__more-toggle" type="button" aria-expanded="false">Para saber más</button>
+            <div class="back__more-panel" hidden>
+              ${p.sources.map((s) => `
+                <div class="src">
+                  <a class="src__link" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a>
+                  ${s.note ? `<p class="src__note">${esc(s.note)}</p>` : ""}
+                </div>`).join("")}
+            </div>
+          </div>`
+      : "";
+
     const backContent = p.reverso
       ? `
           <div class="back__subtitle">${esc(p.reverso.subtitle)}</div>
@@ -138,6 +153,7 @@
           <div class="back__scroll">
             <div class="back__year">${esc(p.year)}</div>
             ${backContent}
+            ${sources}
             ${cross}
             <div class="back__return">↻ tocá para volver al afiche</div>
           </div>
@@ -212,6 +228,20 @@
     }
     // clic dentro de la revelación abierta: dejar leer
     if (target.closest(".reveal.open")) return;
+
+    // "Para saber más": abrir/cerrar el panel (no gira la tarjeta)
+    const moreToggle = target.closest(".back__more-toggle");
+    if (moreToggle) {
+      const panel = moreToggle.parentElement.querySelector(".back__more-panel");
+      const willOpen = panel.hasAttribute("hidden");
+      if (willOpen) panel.removeAttribute("hidden");
+      else panel.setAttribute("hidden", "");
+      moreToggle.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      requestAnimationFrame(() => updateCue(moreToggle.closest(".back")));
+      return;
+    }
+    // clic en un link de fuentes (o dentro del panel): no gira la tarjeta
+    if (target.closest(".back__more-panel")) return;
 
     // girar (frente o reverso)
     const card = target.closest(".card");

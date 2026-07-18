@@ -89,7 +89,7 @@ body{
   color:var(--muted);
 }
 .chapter-sep:first-child{margin-top:0}
-.chapter-sep__head{display:flex;align-items:baseline;gap:.9rem}
+.chapter-sep__head{display:flex;align-items:baseline;gap:.35rem .9rem;flex-wrap:wrap}
 .chapter-sep__num{
   font-family:var(--serif);font-size:1.4rem;font-style:italic;
   color:var(--ink);opacity:.7;font-variant-numeric:normal;
@@ -99,7 +99,7 @@ body{
   color:var(--ink);letter-spacing:0;
 }
 .chapter-sep__range{margin-left:auto;font-size:.78rem;letter-spacing:.1em;font-variant-numeric:tabular-nums}
-.chapter-sep__line{flex:1;height:1px;background:var(--line)}
+.chapter-sep__line{flex:1 1 40px;min-width:40px;height:1px;background:var(--line)}
 .chapter-sep__blurb{
   margin-top:.7rem;max-width:52ch;
   font-size:clamp(.85rem,3.4vw,.94rem);line-height:1.5;
@@ -275,6 +275,29 @@ body{
   font-family:var(--serif);
   font-size:clamp(.9rem,3.7vw,1rem);line-height:1.5;color:#f0eee8;
   text-wrap:pretty;
+}
+
+/* --- "Para saber más" (pie discreto + panel de fuentes inline) --- */
+.back__more{margin-top:1.3rem;padding-top:.9rem;border-top:1px solid var(--line)}
+.back__more-toggle{
+  background:none;border:0;padding:0;cursor:pointer;
+  color:var(--muted);font:inherit;font-size:.72rem;letter-spacing:.06em;
+  display:inline-flex;align-items:center;gap:.45em;
+  transition:color .25s var(--ease);
+}
+.back__more-toggle::before{content:"→";font-size:.9em;transition:transform .25s var(--ease)}
+.back__more-toggle[aria-expanded="true"]::before{content:"↓"}
+.back__more-toggle:hover{color:var(--ink)}
+.back__more-panel{margin-top:.85rem;display:flex;flex-direction:column;gap:.9rem}
+.back__more-panel[hidden]{display:none}
+.src__link{
+  font-family:var(--serif);font-size:.95rem;
+  color:var(--draft);text-decoration:none;
+  border-bottom:1px solid rgba(201,173,99,.35);
+}
+.src__link:hover{border-bottom-color:var(--draft)}
+.src__note{
+  margin-top:.2rem;font-size:.82rem;line-height:1.45;color:var(--muted);text-wrap:pretty;
 }
 .back__concepts{font-size:clamp(.95rem,4vw,1.08rem);line-height:1.4}
 .back__theorist{font-family:var(--serif);font-style:italic;font-size:1.05rem}

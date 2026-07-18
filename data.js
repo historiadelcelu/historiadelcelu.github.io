@@ -27,6 +27,14 @@
                      }
                   (ver 2007–2009 más abajo como ejemplo completo)
      crossref  -> (opcional) botón de cruce en el reverso {to, label}
+     sources   -> (opcional) fuentes del pie "Para saber más". Si falta o
+                  está vacío, el pie NO se muestra (queda invisible hasta
+                  que cargues fuentes). Estructura:
+                     sources: [
+                       { title: "Nombre de la obra o fuente",
+                         url: "https://…",
+                         note: "Una línea de qué vas a encontrar ahí." }
+                     ]
      draft     -> (opcional) true = copy provisorio, revisar
 
    PARA COMPLETAR LOS 17 AÑOS QUE FALTAN: pegá el bloque `reverso` de arriba
@@ -47,8 +55,8 @@ const THESIS_SUB =
 const CHAPTERS = [
   { n: "I", name: "La promesa", from: 2007, to: 2010,
     blurb: "El teléfono llega prometiéndote el mundo en el bolsillo. La trampa ya está sembrada, pero todavía se siente como un regalo." },
-  { n: "II", name: "Te conocen", from: 2011, to: 2014,
-    blurb: "El aparato empieza a saber quién sos: qué decís, dónde estás, tu cuerpo, tu plata. El período del reconocimiento." },
+  { n: "II", name: "El período del reconocimiento", from: 2011, to: 2014,
+    blurb: "El aparato empieza a saber quién sos: tu voz, tu ubicación, tu cuerpo, tu plata." },
   { n: "III", name: "El cerco", from: 2015, to: 2018,
     blurb: "Deciden qué ves, sellan el objeto contra vos, te identifican la cara y te venden una cura falsa. El lazo se ajusta." },
   { n: "IV", name: "La captura total", from: 2019, to: 2022,
@@ -89,7 +97,7 @@ const POSTERS = [
       subtitle: "La tienda de apps",
       paras: [
         "La tienda de aplicaciones cambió la naturaleza del teléfono: dejó de ser un aparato con funciones fijas y se volvió un contenedor infinito. Cualquier necesidad tuya podía convertirse en una app. Y acá aparece la trampa que casi nadie vio en 2008: muchas de esas apps eran gratis. ¿Cómo puede ser gratis algo que costó millones desarrollar? Porque el pago sos vos: tus datos, tus gustos, tus horarios, tus contactos.",
-        "Shoshana Zuboff, profesora de Harvard, le puso nombre a un modelo que para 2008 ya llevaba años en marcha: el capitalismo de vigilancia. La materia prima de esta industria no es el petróleo ni el acero: es tu comportamiento, registrado y vendido para predecir (e influir) lo que vas a hacer después. A eso se le suma el segundo cierre de la trampa, el lock-in o encierro: cuanto más comprás, guardás y configurás en un ecosistema, más caro —en plata y en esfuerzo— se vuelve irte. Entre lo que saben de vos y lo que ya dejaste acá adentro, la puerta de salida se cierra sola."
+        "Shoshana Zuboff, profesora de Harvard, le puso nombre a un negocio que para 2008 ya llevaba años en marcha: el capitalismo de vigilancia. La materia prima de esta industria no es el petróleo ni el acero: es tu comportamiento, registrado y vendido para predecir (e influir) lo que vas a hacer después. A eso se le suma el segundo cierre de la trampa, el lock-in o encierro: cuanto más comprás, guardás y configurás en un ecosistema, más caro —en plata y en esfuerzo— se vuelve irte. Entre lo que saben de vos y lo que ya dejaste acá adentro, la puerta de salida se cierra sola."
       ],
       pensar: "¿Cuántas apps gratis usás? ¿Qué creés que dan a cambio? Si mañana quisieras cambiar de marca de teléfono, ¿qué perderías?"
     }
