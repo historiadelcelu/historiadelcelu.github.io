@@ -109,12 +109,12 @@ body{
 /* ---------- TARJETA / AFICHE ---------- */
 .card{
   position:relative;
-  margin-block:clamp(20px,6vw,34px);
+  margin-block:clamp(40px,13vw,64px);   /* más aire entre afiches, sobre todo en celular */
   perspective:1600px;
 }
 .card__inner{
   position:relative;
-  width:100%;aspect-ratio:4/5;
+  width:100%;aspect-ratio:9/16;         /* formato vertical tipo pantalla de celular */
   transform-style:preserve-3d;
   transition:transform .7s var(--ease);
   border-radius:var(--radius);
@@ -220,11 +220,30 @@ body{
   cursor:pointer;
   background:linear-gradient(165deg,#141416,#0e0e10);
   color:var(--ink);
-  padding:clamp(24px,6.5vw,34px);
-  gap:.2rem;
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
+  display:flex;flex-direction:column;
+  padding:0;
+  overflow:hidden;
 }
+/* zona de texto scrolleable */
+.back__scroll{
+  flex:1 1 auto;min-height:0;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:clamp(24px,6.5vw,34px);
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.25) transparent;
+}
+.back__scroll::-webkit-scrollbar{width:6px}
+.back__scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22);border-radius:3px}
+/* indicador de "hay más abajo": aparece solo si el reverso scrollea */
+.back__cue{
+  position:absolute;left:0;right:0;bottom:0;height:72px;z-index:2;
+  pointer-events:none;
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:9px;
+  background:linear-gradient(to top,#0e0e10 30%,rgba(14,14,16,0));
+  color:var(--muted);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  opacity:0;transition:opacity .3s var(--ease);
+}
+.back__cue::before{content:"↓";margin-right:.5em;font-size:.95rem;line-height:1}
+.back.back--more .back__cue{opacity:.95}
 .back__year{font-family:var(--serif);font-style:italic;opacity:.5;font-size:.9rem}
 .back__block{margin-top:1.15rem}
 .back__label{
@@ -269,7 +288,7 @@ body{
 }
 .back__cross:hover{background:rgba(255,255,255,.09);border-color:var(--ink)}
 .back__return{
-  margin-top:auto;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  margin-top:1.6rem;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted);
 }
 

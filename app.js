@@ -46,6 +46,22 @@
     }
   });
 
+  /* ---- indicador de scroll del reverso ("↓ seguí leyendo") ----
+     Aparece solo si el texto del dorso no entra y queda más para leer. */
+  function updateCue(back) {
+    if (!back) return;
+    const sc = back.querySelector(".back__scroll");
+    if (!sc) return;
+    const more = sc.scrollHeight - sc.clientHeight - sc.scrollTop > 8;
+    back.classList.toggle("back--more", more);
+  }
+  document.querySelectorAll(".back__scroll").forEach((sc) => {
+    sc.addEventListener("scroll", () => updateCue(sc.closest(".back")), { passive: true });
+  });
+  window.addEventListener("resize", () => {
+    document.querySelectorAll(".card.flipped .back").forEach(updateCue);
+  }, { passive: true });
+
   function chapterSeparator(c) {
     const range = c.from + "\u2013" + c.to;
     return `
@@ -119,10 +135,13 @@
 
         <div class="face back" role="button" tabindex="0"
              aria-label="Reverso ${esc(p.year)}. Tocá para volver.">
-          <div class="back__year">${esc(p.year)}</div>
-          ${backContent}
-          ${cross}
-          <div class="back__return">↻ tocá para volver al afiche</div>
+          <div class="back__scroll">
+            <div class="back__year">${esc(p.year)}</div>
+            ${backContent}
+            ${cross}
+            <div class="back__return">↻ tocá para volver al afiche</div>
+          </div>
+          <div class="back__cue" aria-hidden="true">seguí leyendo</div>
         </div>
 
       </div>
@@ -199,6 +218,10 @@
     if (card && !card.classList.contains("card--synthesis")) {
       closeAllReveals(null);
       card.classList.toggle("flipped");
+      if (card.classList.contains("flipped")) {
+        const back = card.querySelector(".back");
+        requestAnimationFrame(() => updateCue(back));
+      }
     }
   }
 
