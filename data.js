@@ -128,7 +128,15 @@ const POSTERS = [
     fine: "Efectos documentados: ansiedad social, depresión comparativa, distorsión de la autoimagen, adicción a la validación externa. Las adolescentes son particularmente vulnerables; la depresión juvenil aumentará 60% en la próxima década. Y mientras prometemos conexión, desplazamos la conversación cara a cara: juntos, pero solos.",
     concepts: "crisis de salud mental adolescente · desplazamiento del vínculo presencial · performatividad de la identidad",
     theorist: "Haidt · Turkle",
-    pedagogy: "Potencia la autoexpresión; atrofia la conversación cara a cara y la escritura extensa, reducida al caption."
+    pedagogy: "Potencia la autoexpresión; atrofia la conversación cara a cara y la escritura extensa, reducida al caption.",
+    reverso: {
+      subtitle: "Las redes en el bolsillo",
+      paras: [
+        "Las redes sociales existían antes, pero en 2010 se mudaron a tu bolsillo, ahora con cámara frontal. La combinación cambió algo profundo: pasaste de usar una red social a vivir dentro de una. Cada momento se volvió publicable, y cada publicación, comparable. A eso los investigadores le llaman performatividad de la identidad: dejás de simplemente vivir tu vida y empezás a producirla para una audiencia.",
+        "Jonathan Haidt, psicólogo social, documentó lo que vino después: a partir de 2012, la ansiedad y la depresión adolescente —sobre todo en chicas— se dispararon en casi todos los países con datos disponibles, en sincronía exacta con la adopción masiva del smartphone con redes. Y Sherry Turkle, investigadora del MIT, le puso título al costo relacional: Alone Together, juntos pero solos. La tecnología que promete conexión desplaza justo lo que la conexión necesita: la conversación cara a cara, con silencios, sin filtros."
+      ],
+      pensar: "¿Alguna vez viviste algo lindo y tu primer impulso fue fotografiarlo? ¿Cuándo fue la última vez que estuviste con alguien y ninguno de los dos miró el teléfono? ¿Alguna vez te sentiste peor con vos mismo después de scrollear un rato?"
+    }
   },
   {
     year: "2011", era: 2, model: "Nexus Phone 5 · 2011",
@@ -138,7 +146,15 @@ const POSTERS = [
     fine: "Vera graba audio continuamente «para mejorar el servicio». Las grabaciones se almacenan indefinidamente y pueden ser escuchadas por contratistas humanos. No existe un apagado real del micrófono.",
     concepts: "vigilancia acústica · offloading cognitivo",
     theorist: "Sparrow",
-    pedagogy: "Atrofia la memoria y el saber-hacer: delegás en la voz lo que antes retenías."
+    pedagogy: "Atrofia la memoria y el saber-hacer: delegás en la voz lo que antes retenías.",
+    reverso: {
+      subtitle: "La asistente que escucha",
+      paras: [
+        "En 2011 le empezamos a hablar al teléfono para darle instrucciones. Para eso, el micrófono tenía que estar activado todo el tiempo, esperando. Tu casa, tu intimidad, se conectaba directamente a una empresa que procesaba todo lo que decías y generaba datos para vender.",
+        "El mismo aparato que te escucha también empezó a responderte. Y preguntar no tiene nada de malo, al contrario: así se aprende. El problema es a quién le preguntás. El asistente no te enseña ni te muestra cómo llegó a la respuesta: te la entrega cerrada, como un oráculo. Y eso trae dos trampas. La primera es la dependencia: cada consulta te ahorra un esfuerzo hoy, y va atrofiando el músculo de resolver por tu cuenta. La segunda es más honda: lo que te responde no lo podés verificar. No hay fuentes, no hay «según quién», no hay con qué contrastar. Una sola voz te dice qué es verdad, y esa voz responde a la compañía que programó el asistente."
+      ],
+      pensar: "¿Cuántos números de teléfono sabés de memoria hoy? ¿Y hace quince años? Cuando el asistente te da una respuesta, ¿cómo sabés si es verdad? Y esa voz que te contesta, ¿de quién es?"
+    }
   },
   {
     year: "2012", era: 2, model: "Nexus Phone 6 · 2012",
